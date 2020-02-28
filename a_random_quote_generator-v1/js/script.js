@@ -44,10 +44,10 @@ let quotes = [
  * Runs a random number generator first to select an item in the array
  * The random number generator is based on the random number generators taught in various treehouse lessons.
 ***/
-let randomNumber;
+let randomQuote;
 function getRandomQuote() {
-randomNumber = Math.floor(Math.random() * quotes.length);
-return randomNumber;
+randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+return randomQuote;
 }
 
 
@@ -59,18 +59,18 @@ return randomNumber;
 function printQuote() {
   
   // calling the getRandomQuote function
-  let numberToUse = getRandomQuote();
+  let quoteToUse = getRandomQuote();
   //starting the HTML string for the quote and source used, those will always appear, storing it in a new message variable
- let message = `<p class="quote">${quotes[numberToUse].quote}</p>
- <p class="source">${quotes[numberToUse].source}`;
+ let message = `<p class="quote">${quoteToUse.quote}</p>
+ <p class="source">${quoteToUse.source}`;
 
   //test to see if a citation is present, if so, add the citation to the message
-  if (quotes[numberToUse].citation !== undefined){
-    message += `<span class="citation"> ${quotes[numberToUse].citation}</span>`;
+  if (quoteToUse.citation !== undefined){
+    message += `<span class="citation"> ${quoteToUse.citation}</span>`;
   }
  //test to see if a year is present, if so, add the year to the message
-if (quotes[numberToUse].year !== undefined){
-  message += `<span class=year>${quotes[numberToUse].year}</span>`;
+if (quoteToUse.year !== undefined){
+  message += `<span class=year>${quoteToUse.year}</span>`;
 }
  //close the HTML string
   message += `</p>`
