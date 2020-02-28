@@ -29,15 +29,19 @@ let quotes = [
   {quote: "Great works are performed not by strength but by perseverance.",
    source: "Samuel Johnson",
    citation: "Rasselas",
-   year: 1759
+   year: 1759,
+   tag: "motivational"
   },
   {quote: "To thine own self be true.",
    source: "William Shakespeare",
    citation: "Hamlet", 
-   year: 1603
+   year: 1603,
+   tag: "literature"
   },
 ];
 
+//create an array of colors to use for the background
+let colors = ['red', 'blue', 'cyan', 'pink', 'purple', 'yellow', 'green', 'brown']; 
 
 /***
  * `getRandomQuote` function
@@ -50,7 +54,14 @@ randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 return randomQuote;
 }
 
-
+//function to get a random background color
+//runs a random number generator to select a color from the colors array, then applies it to the website
+//I used this stackoverflow page to get the basic idea and the document.body.style.background-part of my code: 
+//https://stackoverflow.com/questions/21919478/how-to-change-the-background-color-using-javascript
+function randomBackground() {
+  let randomColor = colors[Math.floor(Math.random() * colors.length)];
+  document.body.style.background = randomColor;
+}
 
 /***
  * `printQuote` function
@@ -72,6 +83,10 @@ function printQuote() {
 if (quoteToUse.year !== undefined){
   message += `<span class=year>${quoteToUse.year}</span>`;
 }
+//adds tags where they exist in the same style of the year property
+if (quoteToUse.tag !== undefined){
+  message += `<span class=year>${quoteToUse.tag}</span>`
+}
  //close the HTML string
   message += `</p>`
 
@@ -79,8 +94,13 @@ if (quoteToUse.year !== undefined){
   let printToPage = document.getElementById('quote-box');
   printToPage.innerHTML = message; 
 
+  //call the randomBackground function
+  randomBackground();
 }
 
+
+//a new quote will print every 5 seconds, I got the basic code for this from stackoverflow: https://stackoverflow.com/questions/2133166/loop-timer-in-javascript
+setInterval(printQuote, 5000)
 
 /***
  * click event listener for the print quote button
